@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            margin: 5px 0;
+            padding: 8px;
+            font-size: 16px;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Calculator</h2>
+    <label>Entry Price:</label>
+    <input type="number" id="entry" placeholder="Enter entry price">
+    
+    <label>SL Points:</label>
+    <input type="number" id="slPoints" placeholder="Enter SL points">
+    
+    <label>Target Points:</label>
+    <input type="number" id="targetPoints" placeholder="Enter target points">
+    
+    <label>Stop Loss Price:</label>
+    <input type="number" id="sl" readonly>
+    
+    <label>Target Price:</label>
+    <input type="number" id="target" readonly>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('slPoints').value = localStorage.getItem('slPoints') || 0;
+            document.getElementById('targetPoints').value = localStorage.getItem('targetPoints') || 0;
+            calculate();
+        });
+
+        document.getElementById('entry').addEventListener('input', calculate);
+        document.getElementById('slPoints').addEventListener('input', function() {
+            localStorage.setItem('slPoints', this.value);
+            calculate();
+        });
+        document.getElementById('targetPoints').addEventListener('input', function() {
+            localStorage.setItem('targetPoints', this.value);
+            calculate();
+        });
+
+        function calculate() {
+            let entry = parseFloat(document.getElementById('entry').value) || 0;
+            let slPoints = parseFloat(document.getElementById('slPoints').value) || 0;
+            let targetPoints = parseFloat(document.getElementById('targetPoints').value) || 0;
+            
+            if (entry > 0) {
+                document.getElementById('sl').value = entry - slPoints;
+                document.getElementById('target').value = entry + targetPoints;
+            } else {
+                document.getElementById('sl').value = '';
+                document.getElementById('target').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
