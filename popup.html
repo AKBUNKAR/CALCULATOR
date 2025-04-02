@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; width: 250px; }
+        input { width: 100%; margin: 5px 0; padding: 5px; }
+        label { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Calculator</h2>
+    <label>Entry Price:</label>
+    <input type="number" id="entry" placeholder="Enter entry price" />
+    
+    <label>SL Points:</label>
+    <input type="number" id="slPoints" placeholder="Enter SL points" />
+    
+    <label>Target Points:</label>
+    <input type="number" id="targetPoints" placeholder="Enter target points" />
+    
+    <label>Stop Loss Price:</label>
+    <input type="number" id="sl" readonly />
+    
+    <label>Target Price:</label>
+    <input type="number" id="target" readonly />
+    
+    <script src="popup.js"></script>
+</body>
+</html>
